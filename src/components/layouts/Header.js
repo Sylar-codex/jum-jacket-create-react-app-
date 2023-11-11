@@ -23,6 +23,7 @@ function Header() {
   useEffect(() => {
     getCarts();
   }, []);
+
   const toggleMenu = () => {
     return {
       left: toggle ? "0" : "100%",
@@ -94,7 +95,7 @@ function Header() {
           }}
           className="logo"
         >
-          <img src={logo} />
+          <img src={logo} alt="logo" />
         </div>
         <div className="auth-guest">
           <div>{isAuthenticated ? authUser : guest}</div>

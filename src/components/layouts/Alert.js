@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment, useContext } from "react";
+import React, { useEffect, Fragment, useContext, useCallback } from "react";
 import { toast } from "react-toastify";
 import { ErrorContext } from "../../context/ErrorContext";
 import { MessageContext } from "../../context/MessageContext";
@@ -6,12 +6,14 @@ import { MessageContext } from "../../context/MessageContext";
 function Alert() {
   const { message } = useContext(MessageContext);
   const { error } = useContext(ErrorContext);
-  const notifyMessage = () => {
+
+  const notifyMessage = useCallback(() => {
     if (message.addToCart) toast.success(message.addToCart);
     if (message.deleteCart) toast.success(message.deleteCart);
     if (message.passwordNotMatch) toast.error(message.passwordNotMatch);
-  };
-  const notifyError = () => {
+  }, [message.addToCart, message.deleteCart, message.passwordNotMatch]);
+
+  const notifyError = useCallback(() => {
     if (error.msg.name) {
       toast.error(`Name: ${error.msg.name.join()}`);
     }
@@ -27,14 +29,21 @@ function Alert() {
     if (error.msg.username) {
       toast.error(error.msg.username.join());
     }
-  };
+  }, [
+    error.msg.name,
+    error.msg.email,
+    error.msg.message,
+    error.msg.non_field_errors,
+    error.msg.username,
+  ]);
 
   useEffect(() => {
     notifyError();
-  }, [error]);
+  }, [error, notifyError]);
+
   useEffect(() => {
     notifyMessage();
-  }, [message]);
+  }, [message, notifyMessage]);
   return <Fragment />;
 }
 

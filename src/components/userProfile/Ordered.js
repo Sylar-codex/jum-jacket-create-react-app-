@@ -4,9 +4,11 @@ import "../../css/ordered.css";
 
 function Ordered() {
   const { ordered, getCarts } = useCartState();
+
   useEffect(() => {
     getCarts();
   }, []);
+
   return (
     <div className="order-div">
       <h2>Completed Order</h2>

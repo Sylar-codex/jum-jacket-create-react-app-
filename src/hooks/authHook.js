@@ -31,6 +31,7 @@ const useAuthState = () => {
       })
       .catch((err) => {
         dispatchAuth({ type: AUTH_ERROR });
+        console.log("error-auth", err);
       });
   };
 

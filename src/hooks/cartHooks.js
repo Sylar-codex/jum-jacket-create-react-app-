@@ -4,9 +4,8 @@ import { CartContext } from "../context/CartContext";
 import { OrderedContext } from "../context/OrderedContext";
 import { AuthContext } from "../context/AuthContext";
 import { tokenConfig } from "../actions/authFunc";
-import { createMessage, returnError } from "../actions/messages";
+import { createMessage } from "../actions/messages";
 import { MessageContext } from "../context/MessageContext";
-import { ErrorContext } from "../context/ErrorContext";
 import {
   GET_CARTS,
   ADD_CART,
@@ -18,7 +17,6 @@ import {
 function useCartState() {
   const [total, setTotal] = useState(0);
   const { dispatchMessage } = useContext(MessageContext);
-  const { dispatchError } = useContext(ErrorContext);
   const { carts, dispatchCarts } = useContext(CartContext);
   const { ordered, dispatchOrdered } = useContext(OrderedContext);
 

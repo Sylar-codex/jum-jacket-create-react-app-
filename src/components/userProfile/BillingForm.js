@@ -33,22 +33,22 @@ function BillingForm() {
         email: user.email,
       });
     }
-  }, [auth, auth.isAuthenticated]);
+  }, [auth, isAuthenticated, user, billForm]);
 
-  useEffect(() => {
-    getCarts();
-  }, []);
+  // useEffect(() => {
+  //   getCarts();
+  // }, []);
+
   useEffect(() => {
     if (wallet.deposit) {
       window.open(wallet.deposit.authorization_url);
       navigate("/deposit");
     }
-  }, [wallet.deposit]);
+  }, [wallet.deposit, navigate]);
 
   useEffect(() => {
-    carts;
     getTotal(carts.carts);
-  }, [carts]);
+  }, []);
 
   const handleChange = (e) => {
     setBillForm({ ...billForm, [e.target.name]: e.target.value });

@@ -18,6 +18,7 @@ function Deposit() {
   useEffect(() => {
     getCarts();
   }, []);
+
   const navigate = useNavigate();
   //confirm payment
   const confirmFunc = () => {

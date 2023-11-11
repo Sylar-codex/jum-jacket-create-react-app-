@@ -19,7 +19,7 @@ function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password2 != password) {
+    if (password2 !== password) {
       dispatchMessage(
         createMessage({ passwordNotMatch: "password doesnt match" })
       );

@@ -3,7 +3,6 @@ import {
   GET_CARTS,
   DELETE_CART,
   UPDATE_CART,
-  GET_TOTAL,
 } from "../actions/types";
 
 function cartReducer(state, action) {

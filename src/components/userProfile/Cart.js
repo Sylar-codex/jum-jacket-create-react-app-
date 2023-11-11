@@ -14,9 +14,8 @@ function Cart({ carts, getCarts, deleteCart, updateCart, getTotal, total }) {
   const delivery = 1500;
 
   useEffect(() => {
-    carts;
     getTotal(carts.carts);
-  }, [carts]);
+  }, [getTotal]);
 
   return (
     <div>

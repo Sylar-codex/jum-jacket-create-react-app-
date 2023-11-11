@@ -16,15 +16,15 @@ function Product() {
   const [modalInfo, setModalInfo] = useState(false);
   const [modalCart, setModalCart] = useState(false);
   const { products, getProducts } = useProductState();
+
   useEffect(() => {
-    getProducts();
     getCarts();
+    getProducts();
   }, []);
 
   useEffect(() => {
-    carts;
     getTotal(carts.carts);
-  }, [carts]);
+  }, [getTotal]);
 
   useEffect(() => {
     const cc = JSON.parse(localStorage.getItem("prod-info"));
