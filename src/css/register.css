@@ -26,18 +26,30 @@
 
 .register-submit {
   margin: 0.5rem 1rem;
-}
-.register-submit input {
   text-align: center;
   padding: 8px;
   border: none;
   border-radius: 5px;
-  width: 20%;
+  width: 50%;
+  height: 2.5rem;
   background: #0e6efd;
   color: #ffffff;
   font-weight: 700;
 }
-.register-submit input:hover {
+.register-loading {
+  margin: 0.5rem 1rem;
+  text-align: center;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  width: 50%;
+  height: 2.5rem;
+  background: #0e6efd;
+  color: #ffffff;
+  font-weight: 700;
+  opacity: 0.8;
+}
+.register-submit:hover {
   cursor: pointer;
   opacity: 0.8;
 }

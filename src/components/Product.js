@@ -48,38 +48,42 @@ function Product() {
 
   return (
     <div>
-      <div className="product">
-        {products.products.map((product) => (
-          <div className="prod-disp" key={product.id}>
-            <div className="prod-div-img">
-              <LazyLoadImage src={product.image} alt="product" />
-            </div>
-            <div className="quick">
-              <p
+      {products.isLoading ? (
+        <div className="loading"></div>
+      ) : (
+        <div className="product">
+          {products.products.map((product) => (
+            <div className="prod-disp" key={product.id}>
+              <div className="prod-div-img">
+                <LazyLoadImage src={product.image} alt="product" />
+              </div>
+              <div className="quick">
+                <p
+                  onClick={() => {
+                    setModalInfo(true);
+                    setInfo(product);
+                  }}
+                >
+                  Quick view
+                </p>
+              </div>
+              <div className="prod-name">{product.product_name}</div>
+              <div className="line"></div>
+              <div className="prod-price">
+                {"₦ " + product.price.toLocaleString()}
+              </div>
+              <button
                 onClick={() => {
-                  setModalInfo(true);
-                  setInfo(product);
+                  checkCart(product);
+                  setModalCart(true);
                 }}
               >
-                Quick view
-              </p>
+                add to cart
+              </button>
             </div>
-            <div className="prod-name">{product.product_name}</div>
-            <div className="line"></div>
-            <div className="prod-price">
-              {"₦ " + product.price.toLocaleString()}
-            </div>
-            <button
-              onClick={() => {
-                checkCart(product);
-                setModalCart(true);
-              }}
-            >
-              add to cart
-            </button>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
       {/* Modal for product info */}
       {modalInfo && (
         <div className="product-info-modal">

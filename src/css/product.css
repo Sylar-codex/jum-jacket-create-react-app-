@@ -321,6 +321,24 @@
   opacity: 0.8;
 }
 
+.loading {
+  margin: 12rem auto;
+  border: 16px solid var(--dark-cyan);
+  border-top: 16px solid var(--white);
+  border-radius: 50%;
+  width: 8rem;
+  height: 8rem;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media only screen and (max-width: 430px) {
   .product {
     margin: 6rem 0.5rem 6rem 1.1rem;

@@ -7,6 +7,7 @@ const { Provider } = ProductContext;
 
 const initialState = {
   products: [],
+  isLoading: true,
 };
 
 const ProductProvider = ({ children }) => {

@@ -42,6 +42,7 @@ const useAuthState = () => {
       },
     };
     const body = JSON.stringify({ username, password });
+    dispatchAuth({ type: USER_LOADING });
     await axios
       .post(`${url}/api/auth/login`, body, config)
       .then((res) => {

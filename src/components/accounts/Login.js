@@ -3,6 +3,7 @@ import useInputState from "../../hooks/inputHook";
 import useAuthState from "../../hooks/authHook";
 import "../../css/login.css";
 import { Link, Navigate } from "react-router-dom";
+import ButtonSpinner from "../../utils/ButtonSpinner";
 
 function Login() {
   const { auth, login } = useAuthState();
@@ -30,9 +31,13 @@ function Login() {
           <label>Password</label>
           <input type="password" value={password} onChange={setPassword} />
         </div>
-        <div className="login-submit">
-          <input type="submit" value="Login" />
-        </div>
+        <button
+          disabled={auth.isLoading ? true : false}
+          type="submit"
+          className={`${auth.isLoading ? "login-submit" : "login-loading"}`}
+        >
+          {auth.isLoading ? <ButtonSpinner /> : "Login"}
+        </button>
       </form>
       <div className="reg-red">
         <p>

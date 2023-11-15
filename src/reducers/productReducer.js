@@ -5,6 +5,7 @@ function productReducer(state, action) {
       return {
         ...state,
         products: action.payload,
+        isLoading: false,
       };
     default:
       return state;

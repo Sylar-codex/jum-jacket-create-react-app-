@@ -5,6 +5,7 @@ import "../../css/register.css";
 import { createMessage } from "../../actions/messages";
 import { MessageContext } from "../../context/MessageContext";
 import { Link, Navigate } from "react-router-dom";
+import ButtonSpinner from "../../utils/ButtonSpinner";
 
 function Register() {
   const { auth, register } = useAuthState();
@@ -67,9 +68,15 @@ function Register() {
           <label>Confirm Password</label>
           <input type="password" value={password2} onChange={setPassword2} />
         </div>
-        <div className="register-submit">
-          <input type="submit" value="Register" />
-        </div>
+        <button
+          disabled={auth.isLoading ? true : false}
+          type="submit"
+          className={`${
+            auth.isLoading ? "register-loading" : "register-submit"
+          }`}
+        >
+          {auth.isLoading ? <ButtonSpinner /> : "Register"}
+        </button>
       </form>
       <div className="login-red">
         <p>
