@@ -10,6 +10,7 @@ function cartReducer(state, action) {
     case GET_CARTS:
       return {
         ...state,
+        isLoading: false,
         carts: action.payload,
       };
     case ADD_CART:

@@ -34,7 +34,7 @@ function Login() {
         <button
           disabled={auth.isLoading ? true : false}
           type="submit"
-          className={`${auth.isLoading ? "login-submit" : "login-loading"}`}
+          className={`${auth.isLoading ? "login-loading" : "login-submit"}`}
         >
           {auth.isLoading ? <ButtonSpinner /> : "Login"}
         </button>

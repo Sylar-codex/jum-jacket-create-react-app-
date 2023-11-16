@@ -5,6 +5,7 @@ const CartContext = createContext();
 const { Provider } = CartContext;
 const initialState = {
   carts: [],
+  isLoading: true,
 };
 
 const CartProvider = ({ children }) => {
