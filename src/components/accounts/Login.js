@@ -12,6 +12,7 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     login(username, password);
     resetUsername();
     resetPassword();
@@ -32,11 +33,11 @@ function Login() {
           <input type="password" value={password} onChange={setPassword} />
         </div>
         <button
-          disabled={auth.isLoading ? true : false}
+          disabled={auth.isSubmitting ? true : false}
           type="submit"
-          className={`${auth.isLoading ? "login-loading" : "login-submit"}`}
+          className={`${auth.isSubmitting ? "login-loading" : "login-submit"}`}
         >
-          {auth.isLoading ? <ButtonSpinner /> : "Login"}
+          {auth.isSubmitting ? <ButtonSpinner /> : "Login"}
         </button>
       </form>
       <div className="reg-red">

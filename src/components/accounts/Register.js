@@ -69,13 +69,13 @@ function Register() {
           <input type="password" value={password2} onChange={setPassword2} />
         </div>
         <button
-          disabled={auth.isLoading ? true : false}
+          disabled={auth.isSubmitting ? true : false}
           type="submit"
           className={`${
-            auth.isLoading ? "register-loading" : "register-submit"
+            auth.isSubmitting ? "register-loading" : "register-submit"
           }`}
         >
-          {auth.isLoading ? <ButtonSpinner /> : "Register"}
+          {auth.isSubmitting ? <ButtonSpinner /> : "Register"}
         </button>
       </form>
       <div className="login-red">

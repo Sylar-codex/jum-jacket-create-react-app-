@@ -8,6 +8,7 @@ const { Provider } = AuthContext;
 const initialState = {
   token: localStorage.getItem("token"),
   isLoading: false,
+  isSubmitting: false,
   user: null,
   isAuthenticated: null,
 };

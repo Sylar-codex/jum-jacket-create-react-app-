@@ -7,6 +7,7 @@ import {
   REGISTER_SUCCESS,
   USER_LOADED,
   USER_LOADING,
+  FORM_SUBMISSION,
 } from "../actions/types";
 
 function authReducer(state, action) {
@@ -16,11 +17,17 @@ function authReducer(state, action) {
         ...state,
         isLoading: true,
       };
+    case FORM_SUBMISSION:
+      return {
+        ...state,
+        isSubmitting: true,
+      };
     case USER_LOADED:
       return {
         ...state,
         isLoading: false,
         isAuthenticated: true,
+        isSubmitting: false,
         user: action.payload,
       };
     case REGISTER_SUCCESS:
@@ -31,6 +38,7 @@ function authReducer(state, action) {
         ...action.payload,
         isLoading: false,
         isAuthenticated: true,
+        isSubmitting: false,
       };
     case LOGIN_FAIL:
     case REGISTER_FAIL:
@@ -43,6 +51,7 @@ function authReducer(state, action) {
         isLoading: false,
         isAuthenticated: false,
         user: null,
+        isSubmitting: false,
       };
     default:
       return state;

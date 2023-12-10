@@ -13,6 +13,7 @@ import {
   REGISTER_SUCCESS,
   USER_LOADED,
   USER_LOADING,
+  FORM_SUBMISSION,
 } from "../actions/types";
 
 const useAuthState = () => {
@@ -42,6 +43,7 @@ const useAuthState = () => {
       },
     };
     const body = JSON.stringify({ username, password });
+    dispatchAuth({ type: FORM_SUBMISSION });
     dispatchAuth({ type: USER_LOADING });
     await axios
       .post(`${url}/api/auth/login`, body, config)
