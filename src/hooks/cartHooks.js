@@ -75,8 +75,14 @@ function useCartState() {
   };
 
   const sendBillForm = async (form) => {
+    const config = {
+      headers: {
+        "content-Type": "application/json",
+      },
+    };
+    const body = JSON.stringify(form);
     console.log(form);
-    await axios.post(`${url}/api/billingform/`, form).then((res) => {});
+    await axios.post(`${url}/api/billingform/`, body, config).then((res) => {});
   };
 
   return {
