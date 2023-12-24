@@ -33,11 +33,11 @@ function BillingForm() {
         email: user.email,
       });
     }
-  }, [auth, isAuthenticated, user, billForm]);
+  }, [auth, isAuthenticated]);
 
-  // useEffect(() => {
-  //   getCarts();
-  // }, []);
+  useEffect(() => {
+    getCarts();
+  }, []);
 
   useEffect(() => {
     if (wallet.deposit) {
