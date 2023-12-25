@@ -7,15 +7,13 @@ import ButtonSpinner from "../../utils/ButtonSpinner";
 
 function Login() {
   const { auth, login } = useAuthState();
-  const [username, setUsername, resetUsername] = useInputState("");
-  const [password, setPassword, resetPassword] = useInputState("");
+  const [username, setUsername] = useInputState("");
+  const [password, setPassword] = useInputState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     login(username, password);
-    resetUsername();
-    resetPassword();
   };
   if (auth.isAuthenticated) {
     return <Navigate to="/" />;

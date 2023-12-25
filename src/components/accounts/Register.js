@@ -11,12 +11,12 @@ function Register() {
   const { auth, register } = useAuthState();
   const { dispatchMessage } = useContext(MessageContext);
 
-  const [first_name, setFirst_name, resetFirst_name] = useInputState("");
-  const [last_name, setLast_name, resetLast_name] = useInputState("");
-  const [email, setEmail, resetEmail] = useInputState("");
-  const [username, setUsername, resetUsername] = useInputState("");
-  const [password, setPassword, resetPassword] = useInputState("");
-  const [password2, setPassword2, resetPassword2] = useInputState("");
+  const [first_name, setFirst_name] = useInputState("");
+  const [last_name, setLast_name] = useInputState("");
+  const [email, setEmail] = useInputState("");
+  const [username, setUsername] = useInputState("");
+  const [password, setPassword] = useInputState("");
+  const [password2, setPassword2] = useInputState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
