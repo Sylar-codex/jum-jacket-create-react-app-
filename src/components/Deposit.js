@@ -19,6 +19,8 @@ function Deposit() {
     getCarts();
   }, []);
 
+  const url = process.env.REACT_APP_BASE_URL;
+
   const navigate = useNavigate();
   //confirm payment
   const confirmFunc = () => {
@@ -31,7 +33,7 @@ function Deposit() {
     console.log("i have been clicked");
     await axios
       .get(
-        `http://localhost:8000/api/deposit/verify/${wallet.deposit.reference}/`,
+        `${url}/api/deposit/verify/${wallet.deposit.reference}/`,
         tokenConfig(auth)
       )
       .then((res) => {
