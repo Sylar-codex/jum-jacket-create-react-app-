@@ -28,12 +28,6 @@ function Register() {
     } else {
       const newUser = { first_name, last_name, email, username, password };
       register(newUser);
-      resetFirst_name();
-      resetLast_name();
-      resetEmail();
-      resetUsername();
-      resetPassword();
-      resetPassword2();
     }
     // register(first_name, last_name, email, username, password);
   };
