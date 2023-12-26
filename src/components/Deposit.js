@@ -27,7 +27,6 @@ function Deposit() {
     carts.carts.forEach((cart) => {
       updateCart(cart.id, { paid: true });
     });
-    console.log("cart-update");
   };
   const verify = async () => {
     console.log("i have been clicked");
