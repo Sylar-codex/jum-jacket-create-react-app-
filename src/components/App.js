@@ -12,6 +12,7 @@ import useAuthState from "../hooks/authHook";
 import Deposit from "./Deposit";
 import Alert from "./layouts/Alert";
 import PrivateRoutes from "./common/PrivateRoutes";
+import ProductPage from "./ProductPage";
 
 function App() {
   const { auth, loadUser } = useAuthState();
@@ -24,6 +25,7 @@ function App() {
       <Alert />
       <Routes>
         <Route path="/" exact element={<Product />} />
+        <Route path="/product/:productName" element={<ProductPage />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/orders" element={<Ordered />} />
           <Route path="/billing-form" element={<BillingForm />} />

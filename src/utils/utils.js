@@ -22,4 +22,18 @@ const decrement = (updateCart, id, carts) => {
   updateCart(id, use);
 };
 
-export { increment, decrement };
+const incrementCount = (setState, state, count) => {
+  let ct = count;
+  ct = ct + 1;
+  setState({ ...state, count: ct });
+};
+
+const decrementCount = (setState, state, count) => {
+  let ct = count;
+  if (count > 1) {
+    ct = ct - 1;
+  }
+  setState({ ...state, count: ct });
+};
+
+export { increment, decrement, incrementCount, decrementCount };

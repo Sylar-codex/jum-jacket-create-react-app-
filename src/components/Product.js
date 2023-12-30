@@ -7,6 +7,7 @@ import { faXmark, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { increment, decrement } from "../utils/utils";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../css/product.css";
+import { checkCart } from "../utils/addToCart";
 
 function Product() {
   const navigate = useNavigate();
@@ -33,14 +34,14 @@ function Product() {
     }
   }, []);
 
-  const checkCart = (product) => {
-    const check = carts.carts.some(
-      (cart) => cart.product_name === product.product_name
-    );
-    if (!check) {
-      addCart(product);
-    }
-  };
+  // const checkCart = (product) => {
+  //   const check = carts.carts.some(
+  //     (cart) => cart.product_name === product.product_name
+  //   );
+  //   if (!check) {
+  //     addCart(product);
+  //   }
+  // };
 
   useEffect(() => {
     localStorage.setItem("prod-info", JSON.stringify(info));
@@ -54,7 +55,13 @@ function Product() {
         <div className="product">
           {products.products.map((product) => (
             <div className="prod-disp" key={product.id}>
-              <div className="prod-div-img">
+              <div
+                onClick={() => {
+                  setModalInfo(true);
+                  setInfo(product);
+                }}
+                className="prod-div-img"
+              >
                 <LazyLoadImage src={product.image} alt="product" />
               </div>
               <div className="quick">
@@ -74,7 +81,7 @@ function Product() {
               </div>
               <button
                 onClick={() => {
-                  checkCart(product);
+                  checkCart(addCart, product, carts);
                   setModalCart(true);
                 }}
               >
@@ -103,14 +110,30 @@ function Product() {
               <div className="prod-info-name-desc">
                 <h3>{info.product_name}</h3>
                 <p className="prod-info-price">
-                  {"₦ " + info.price.toLocaleString()}
+                  {"Price:  ₦ " + info.price.toLocaleString()}
                 </p>
                 <div className="prod-info-desc">
-                  <p>{info.description}</p>
+                  <p>
+                    {info.description
+                      .split("_")
+                      .slice(3)
+                      .map((desc) => (
+                        <p>{desc}</p>
+                      ))}
+                  </p>
                 </div>
                 <button
+                  className="more-info-btn"
                   onClick={() => {
-                    addCart(info);
+                    navigate(`/product/${info.product_name}`);
+                  }}
+                >
+                  Click for More Info
+                </button>
+                <button
+                  onClick={() => {
+                    setModalCart(true);
+                    checkCart(addCart, info, carts);
                   }}
                 >
                   add to cart
