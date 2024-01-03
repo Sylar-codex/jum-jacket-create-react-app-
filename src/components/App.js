@@ -13,6 +13,8 @@ import Deposit from "./Deposit";
 import Alert from "./layouts/Alert";
 import PrivateRoutes from "./common/PrivateRoutes";
 import ProductPage from "./ProductPage";
+import EmailPasswordReset from "./accounts/EmailPasswordReset";
+import ResetPassword from "./accounts/ResetPassword";
 
 function App() {
   const { auth, loadUser } = useAuthState();
@@ -34,6 +36,11 @@ function App() {
         <Route path="/carts" element={<MainCart />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/email-reset" element={<EmailPasswordReset />} />
+        <Route
+          path="/reset-passowrd/:uidb64/:token"
+          element={<ResetPassword />}
+        />
       </Routes>
       <Footer />
     </Fragment>

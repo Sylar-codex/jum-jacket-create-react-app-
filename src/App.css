@@ -1,3 +1,9 @@
+/* body {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  border: 2px solid red;
+} */
 .button-spinner {
   text-align: center;
   display: flex;
