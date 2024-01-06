@@ -8,6 +8,7 @@ import {
   USER_LOADED,
   USER_LOADING,
   FORM_SUBMISSION,
+  SUBMISSION_SUCCESS,
 } from "../actions/types";
 
 function authReducer(state, action) {
@@ -21,6 +22,11 @@ function authReducer(state, action) {
       return {
         ...state,
         isSubmitting: true,
+      };
+    case SUBMISSION_SUCCESS:
+      return {
+        ...state,
+        isSubmitting: false,
       };
     case USER_LOADED:
       return {

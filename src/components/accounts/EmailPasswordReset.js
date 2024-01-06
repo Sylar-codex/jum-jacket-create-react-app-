@@ -5,10 +5,16 @@ import ButtonSpinner from "../../utils/ButtonSpinner";
 import useAuthState from "../../hooks/authHook";
 
 function EmailPasswordReset() {
-  const { auth } = useAuthState();
+  const { auth, resetEmail } = useAuthState();
   const [email, setEmail] = useInputState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    resetEmail(email);
+  };
+
   return (
-    <form className="login-form-div">
+    <form onSubmit={handleSubmit} className="login-form-div">
       <h3 style={{ marginLeft: "12px" }}>Please provide your email</h3>
       <div className="login-form-group">
         <label>Email</label>

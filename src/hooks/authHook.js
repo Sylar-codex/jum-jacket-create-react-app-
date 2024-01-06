@@ -4,6 +4,8 @@ import { AuthContext } from "../context/AuthContext";
 import { tokenConfig } from "../actions/authFunc";
 import { ErrorContext } from "../context/ErrorContext";
 import { returnError } from "../actions/messages";
+import { createMessage } from "../actions/messages";
+import { MessageContext } from "../context/MessageContext";
 import {
   AUTH_ERROR,
   LOGIN_FAIL,
@@ -14,11 +16,13 @@ import {
   USER_LOADED,
   USER_LOADING,
   FORM_SUBMISSION,
+  SUBMISSION_SUCCESS,
 } from "../actions/types";
 
 const useAuthState = () => {
   const { auth, dispatchAuth } = useContext(AuthContext);
   const { dispatchError } = useContext(ErrorContext);
+  const { dispatchMessage } = useContext(MessageContext);
 
   const url = process.env.REACT_APP_BASE_URL;
 
@@ -95,12 +99,44 @@ const useAuthState = () => {
         dispatchError(returnError(err.response.data, err.response.status));
       });
   };
+
+  // reset email
+  const resetEmail = async (email) => {
+    dispatchAuth({ type: FORM_SUBMISSION });
+    await axios
+      .post(`${url}/api/request-reset-email`, { email })
+      .then((res) => {
+        console.log(res.data.message);
+        dispatchMessage(createMessage({ message: res.data.message }));
+        dispatchAuth({ type: SUBMISSION_SUCCESS });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // reset password
+
+  const resetPassword = async (body) => {
+    console.log(body);
+    dispatchAuth({ type: FORM_SUBMISSION });
+    await axios
+      .patch(`${url}/api/password-reset-complete`, body)
+      .then((res) => {
+        console.log(res.data.message);
+        dispatchMessage(createMessage({ message: res.data.message }));
+        dispatchAuth({ type: SUBMISSION_SUCCESS });
+      });
+  };
+
   return {
     loadUser,
     login,
     register,
     logout,
     auth,
+    resetEmail,
+    resetPassword,
   };
 };
 

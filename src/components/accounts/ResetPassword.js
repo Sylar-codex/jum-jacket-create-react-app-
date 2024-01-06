@@ -1,22 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import ButtonSpinner from "../../utils/ButtonSpinner";
 import useInputState from "../../hooks/inputHook";
 import useAuthState from "../../hooks/authHook";
+import { createMessage } from "../../actions/messages";
+import { MessageContext } from "../../context/MessageContext";
 import { useParams } from "react-router-dom";
 
 function ResetPassword() {
   const [password, setPassword] = useInputState("");
   const [password2, setPassword2] = useInputState("");
-  const { auth } = useAuthState();
+  const { auth, resetPassword } = useAuthState();
+  const { dispatchMessage } = useContext(MessageContext);
 
   const { uidb64, token } = useParams();
 
   useEffect(() => {
     console.log(uidb64, token);
   }, [uidb64, token]);
+  // https://localhost:3000/#/reset-passowrd/MTA/c0ctb4-7c72d446fa5f54b9daa4671ef1f0b82f
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (password !== password2) {
+      dispatchMessage(
+        createMessage({ passwordNotMatch: "password doesnt match" })
+      );
+    } else {
+      resetPassword({ password, uidb64, token });
+    }
+  };
 
   return (
-    <form className="login-form-div">
+    <form onSubmit={handleSubmit} className="login-form-div">
       <div className="register-form-group">
         <label>Password</label>
         <input type="password" value={password} onChange={setPassword} />
@@ -30,7 +45,7 @@ function ResetPassword() {
         type="submit"
         className={`${auth.isSubmitting ? "login-loading" : "login-submit"}`}
       >
-        {auth.isSubmitting ? <ButtonSpinner /> : "Next"}
+        {auth.isSubmitting ? <ButtonSpinner /> : "Confirm"}
       </button>
     </form>
   );

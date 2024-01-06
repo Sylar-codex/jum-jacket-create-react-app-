@@ -10,8 +10,14 @@ function Alert() {
   const notifyMessage = useCallback(() => {
     if (message.addToCart) toast.success(message.addToCart);
     if (message.deleteCart) toast.success(message.deleteCart);
+    if (message.message) toast.success(message.message);
     if (message.passwordNotMatch) toast.error(message.passwordNotMatch);
-  }, [message.addToCart, message.deleteCart, message.passwordNotMatch]);
+  }, [
+    message.addToCart,
+    message.deleteCart,
+    message.passwordNotMatch,
+    message.message,
+  ]);
 
   const notifyError = useCallback(() => {
     if (error.msg.name) {

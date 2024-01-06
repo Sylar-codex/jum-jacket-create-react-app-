@@ -24,12 +24,10 @@ function Register() {
       dispatchMessage(
         createMessage({ passwordNotMatch: "password doesnt match" })
       );
-      console.log("password doesnt match");
     } else {
       const newUser = { first_name, last_name, email, username, password };
       register(newUser);
     }
-    // register(first_name, last_name, email, username, password);
   };
   if (auth.isAuthenticated) {
     return <Navigate to="/" />;

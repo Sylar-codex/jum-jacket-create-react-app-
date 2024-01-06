@@ -42,6 +42,10 @@ function Login() {
         <p>
           Don't have an account? <Link to="/register">Register</Link>
         </p>
+        <Link style={{ textDecoration: "none" }} to="/email-reset">
+          {" "}
+          <small>Forgot password?</small>
+        </Link>
       </div>
     </div>
   );

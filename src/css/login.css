@@ -59,9 +59,19 @@
   opacity: 0.8;
 }
 .reg-red {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin: 0.5rem 1rem;
 }
 
+.reg-red small {
+  color: #0e6efd;
+}
+
+.reg-red small:hover {
+  cursor: pointer;
+}
 @media only screen and (max-width: 430px) {
   .login-form-div {
     margin: 8rem 0rem 5rem;

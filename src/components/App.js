@@ -38,7 +38,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/email-reset" element={<EmailPasswordReset />} />
         <Route
-          path="/reset-passowrd/:uidb64/:token"
+          path="/reset-password/:uidb64/:token"
           element={<ResetPassword />}
         />
       </Routes>
