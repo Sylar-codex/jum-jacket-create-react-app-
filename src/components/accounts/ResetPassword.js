@@ -4,13 +4,14 @@ import useInputState from "../../hooks/inputHook";
 import useAuthState from "../../hooks/authHook";
 import { createMessage } from "../../actions/messages";
 import { MessageContext } from "../../context/MessageContext";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 function ResetPassword() {
   const [password, setPassword] = useInputState("");
   const [password2, setPassword2] = useInputState("");
   const { auth, resetPassword } = useAuthState();
   const { dispatchMessage } = useContext(MessageContext);
+  const navigate = useNavigate();
 
   const { uidb64, token } = useParams();
 
@@ -27,6 +28,7 @@ function ResetPassword() {
       );
     } else {
       resetPassword({ password, uidb64, token });
+      navigate("/login");
     }
   };
 

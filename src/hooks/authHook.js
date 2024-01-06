@@ -112,6 +112,7 @@ const useAuthState = () => {
       })
       .catch((err) => {
         console.log(err);
+        dispatchAuth({ type: SUBMISSION_SUCCESS });
       });
   };
 
@@ -125,6 +126,10 @@ const useAuthState = () => {
       .then((res) => {
         console.log(res.data.message);
         dispatchMessage(createMessage({ message: res.data.message }));
+        dispatchAuth({ type: SUBMISSION_SUCCESS });
+      })
+      .catch((err) => {
+        console.log(err);
         dispatchAuth({ type: SUBMISSION_SUCCESS });
       });
   };

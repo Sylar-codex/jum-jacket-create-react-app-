@@ -152,7 +152,7 @@ function Product() {
                 <button
                   onClick={() => {
                     setModalCart(true);
-                    checkCart(addCart, info, carts);
+                    checkCart(addCart, info, carts, isAuthenticated, addToCart);
                   }}
                 >
                   add to cart

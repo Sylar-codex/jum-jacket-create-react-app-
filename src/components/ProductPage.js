@@ -5,10 +5,13 @@ import useCartState from "../hooks/cartHooks";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { decrementCount, incrementCount } from "../utils/utils";
 import { checkCart } from "../utils/addToCart";
+import useAuthState from "../hooks/authHook";
 
 function ProductPage() {
   const { products, getProducts } = useProductState();
-  const { addCart, getCarts, carts } = useCartState();
+  const { addCart, getCarts, carts, addToCart } = useCartState();
+  const { auth } = useAuthState();
+  const { isAuthenticated } = auth;
 
   const [productInfo, setProductInfo] = useState({
     product_name: "",
@@ -82,7 +85,7 @@ function ProductPage() {
         <button
           className="prod-page-add-cart-btn"
           onClick={() => {
-            checkCart(addCart, productInfo, carts);
+            checkCart(addCart, productInfo, carts, isAuthenticated, addToCart);
           }}
         >
           add to cart
