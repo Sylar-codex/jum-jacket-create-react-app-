@@ -4,15 +4,28 @@ import useCartState from "../hooks/cartHooks";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import { increment, decrement } from "../utils/utils";
+import { increment, decrement, decrementCount } from "../utils/utils";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../css/product.css";
 import { checkCart } from "../utils/addToCart";
+import useAuthState from "../hooks/authHook";
 
 function Product() {
   const navigate = useNavigate();
-  const { addCart, carts, total, getTotal, getCarts, updateCart, deleteCart } =
-    useCartState();
+  const {
+    addCart,
+    carts,
+    total,
+    getTotal,
+    getCarts,
+    updateCart,
+    deleteCart,
+    addToCart,
+    updateToCart,
+    deleteFromCart,
+  } = useCartState();
+  const { auth } = useAuthState();
+  const { isAuthenticated } = auth;
   const [info, setInfo] = useState({ price: 0 });
   const [modalInfo, setModalInfo] = useState(false);
   const [modalCart, setModalCart] = useState(false);
@@ -81,7 +94,13 @@ function Product() {
               </div>
               <button
                 onClick={() => {
-                  checkCart(addCart, product, carts);
+                  checkCart(
+                    addCart,
+                    product,
+                    carts,
+                    isAuthenticated,
+                    addToCart
+                  );
                   setModalCart(true);
                 }}
               >
@@ -177,7 +196,7 @@ function Product() {
                     <div className="cart-mod-qty">
                       <p
                         onClick={() => {
-                          decrement(updateCart, cart.id, carts);
+                          decrement(updateCart, cart.id, carts, updateToCart);
                         }}
                       >
                         -
@@ -185,7 +204,7 @@ function Product() {
                       <p>{cart.count}</p>
                       <p
                         onClick={() => {
-                          increment(updateCart, cart.id, carts);
+                          increment(updateCart, cart.id, carts, updateToCart);
                         }}
                       >
                         +
@@ -194,7 +213,9 @@ function Product() {
                   </div>
                   <div
                     onClick={() => {
-                      deleteCart(cart.id);
+                      isAuthenticated
+                        ? deleteCart(cart.id)
+                        : deleteFromCart(cart.id);
                     }}
                     className="remove-cart-mod"
                   >

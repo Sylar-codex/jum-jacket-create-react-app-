@@ -67,6 +67,27 @@ function useCartState() {
         console.log(err);
       });
   };
+
+  // The following functions are to when the user is not authenticated
+
+  const addToCart = (cart) => {
+    dispatchCarts({ type: ADD_CART, payload: cart });
+    dispatchMessage(createMessage({ addToCart: "Added to cart" }));
+  };
+
+  const updateToCart = (cart) => {
+    dispatchCarts({ type: UPDATE_CART, payload: cart });
+  };
+
+  const deleteFromCart = (id) => {
+    dispatchCarts({ type: DELETE_CART, payload: id });
+    dispatchMessage(
+      createMessage({ deleteCart: "item has been deleted from  cart" })
+    );
+  };
+  // the above functions for unauthenticated users ends here
+
+  // get total amount
   const getTotal = (carts) => {
     const res = carts.reduce((prev, cart) => {
       return prev + cart.price * cart.count;
@@ -95,6 +116,9 @@ function useCartState() {
     total,
     sendBillForm,
     ordered,
+    addToCart,
+    updateToCart,
+    deleteFromCart,
   };
 }
 export default useCartState;

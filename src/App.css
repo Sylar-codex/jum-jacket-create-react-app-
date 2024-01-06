@@ -1,9 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,700;1,400&display=swap");
+
 /* body {
   min-height: 100vh;
   display: grid;
   grid-template-rows: 1fr auto;
   border: 2px solid red;
 } */
+* {
+  font-family: "Rubik", sans-serif;
+}
 .button-spinner {
   text-align: center;
   display: flex;

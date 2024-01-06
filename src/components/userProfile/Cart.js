@@ -4,7 +4,17 @@ import { increment, decrement } from "../../utils/utils";
 import { Link, useNavigate } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-function Cart({ carts, getCarts, deleteCart, updateCart, getTotal, total }) {
+function Cart({
+  carts,
+  getCarts,
+  deleteCart,
+  updateCart,
+  getTotal,
+  total,
+  updateToCart,
+  deleteFromCart,
+  isAuthenticated,
+}) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,7 +59,7 @@ function Cart({ carts, getCarts, deleteCart, updateCart, getTotal, total }) {
                   <div className="qty-div">
                     <p
                       onClick={() => {
-                        decrement(updateCart, cart.id, carts);
+                        decrement(updateCart, cart.id, carts, updateToCart);
                       }}
                     >
                       -
@@ -57,7 +67,7 @@ function Cart({ carts, getCarts, deleteCart, updateCart, getTotal, total }) {
                     <p>{cart.count}</p>
                     <p
                       onClick={() => {
-                        increment(updateCart, cart.id, carts);
+                        increment(updateCart, cart.id, carts, updateToCart);
                       }}
                     >
                       +
@@ -69,7 +79,9 @@ function Cart({ carts, getCarts, deleteCart, updateCart, getTotal, total }) {
                   <div className="remove-cart">
                     <button
                       onClick={() => {
-                        deleteCart(cart.id);
+                        isAuthenticated
+                          ? deleteCart(cart.id)
+                          : deleteFromCart(cart.id);
                       }}
                     >
                       x
