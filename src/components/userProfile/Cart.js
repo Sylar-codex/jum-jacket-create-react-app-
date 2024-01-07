@@ -14,11 +14,15 @@ function Cart({
   updateToCart,
   deleteFromCart,
   isAuthenticated,
+  getGuestCart,
 }) {
   const navigate = useNavigate();
 
   useEffect(() => {
     getCarts();
+    if (!isAuthenticated) {
+      getGuestCart();
+    }
   }, []);
 
   const delivery = 1500;

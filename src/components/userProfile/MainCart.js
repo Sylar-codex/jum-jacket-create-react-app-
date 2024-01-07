@@ -15,6 +15,7 @@ function Profile() {
     total,
     updateToCart,
     deleteFromCart,
+    getGuestCart,
   } = useCartState();
   return (
     <Fragment>
@@ -28,6 +29,7 @@ function Profile() {
         updateToCart={updateToCart}
         deleteFromCart={deleteFromCart}
         isAuthenticated={isAuthenticated}
+        getGuestCart={getGuestCart}
       />
     </Fragment>
   );

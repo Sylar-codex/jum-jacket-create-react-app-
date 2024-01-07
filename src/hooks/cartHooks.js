@@ -85,6 +85,14 @@ function useCartState() {
       createMessage({ deleteCart: "item has been deleted from  cart" })
     );
   };
+
+  const getGuestCart = () => {
+    const cart = JSON.parse(localStorage.getItem("carts"));
+
+    if (cart !== null) {
+      dispatchCarts({ type: GET_CARTS, payload: cart });
+    }
+  };
   // the above functions for unauthenticated users ends here
 
   // get total amount
@@ -119,6 +127,7 @@ function useCartState() {
     addToCart,
     updateToCart,
     deleteFromCart,
+    getGuestCart,
   };
 }
 export default useCartState;

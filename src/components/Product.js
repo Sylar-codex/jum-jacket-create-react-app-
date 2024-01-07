@@ -23,6 +23,7 @@ function Product() {
     addToCart,
     updateToCart,
     deleteFromCart,
+    getGuestCart,
   } = useCartState();
   const { auth } = useAuthState();
   const { isAuthenticated } = auth;
@@ -34,6 +35,9 @@ function Product() {
   useEffect(() => {
     getCarts();
     getProducts();
+    if (!isAuthenticated) {
+      getGuestCart();
+    }
   }, []);
 
   useEffect(() => {
@@ -46,15 +50,6 @@ function Product() {
       setInfo(cc);
     }
   }, []);
-
-  // const checkCart = (product) => {
-  //   const check = carts.carts.some(
-  //     (cart) => cart.product_name === product.product_name
-  //   );
-  //   if (!check) {
-  //     addCart(product);
-  //   }
-  // };
 
   useEffect(() => {
     localStorage.setItem("prod-info", JSON.stringify(info));
