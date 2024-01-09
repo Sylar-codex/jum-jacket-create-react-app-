@@ -30,6 +30,7 @@ function Deposit() {
   };
   const verify = async () => {
     console.log("i have been clicked");
+    console.log(wallet.deposit.reference);
     await axios
       .get(
         `${url}/api/deposit/verify/${wallet.deposit.reference}/`,

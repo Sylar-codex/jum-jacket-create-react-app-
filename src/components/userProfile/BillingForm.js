@@ -41,10 +41,9 @@ function BillingForm() {
 
   useEffect(() => {
     if (wallet.deposit) {
-      window.open(wallet.deposit.authorization_url);
-      navigate("/deposit");
+      window.location.href = wallet.deposit.authorization_url;
     }
-  }, [wallet.deposit, navigate]);
+  }, [wallet.deposit]);
 
   useEffect(() => {
     getTotal(carts.carts);
