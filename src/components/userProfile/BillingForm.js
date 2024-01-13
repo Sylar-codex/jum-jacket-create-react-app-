@@ -41,8 +41,7 @@ function BillingForm() {
 
   useEffect(() => {
     if (wallet.deposit) {
-      window.open(wallet.deposit.authorization_url);
-      // window.location.href = wallet.deposit.authorization_url;
+      window.location.href = wallet.deposit.authorization_url;
     }
   }, [wallet.deposit]);
 

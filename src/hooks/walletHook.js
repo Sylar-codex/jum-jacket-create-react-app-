@@ -15,7 +15,6 @@ const useWalletState = () => {
     await axios
       .post(`${url}/api/deposit`, depo, tokenConfig(auth))
       .then((res) => {
-        console.log(res.data);
         dispatchWallet({ type: MAKE_DEPOSIT, payload: res.data.data });
       });
   };
