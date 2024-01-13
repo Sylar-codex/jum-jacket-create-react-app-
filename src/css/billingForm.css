@@ -19,6 +19,7 @@
 .form-group input {
   height: 2.5rem;
   padding-left: 10px;
+  font-size: 16px;
 }
 
 .submit-form {
