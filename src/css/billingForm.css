@@ -1,3 +1,7 @@
+:root {
+  --gray: #a9a9a9;
+}
+
 .bill-form {
   margin-top: 10rem;
   margin-bottom: 5rem;
@@ -20,6 +24,9 @@
   height: 2.5rem;
   padding-left: 10px;
   font-size: 16px;
+  border-radius: 8px;
+  outline: none;
+  border: solid 2px var(--gray);
 }
 
 .submit-form {
@@ -32,6 +39,7 @@
   border: none;
   background: #000000;
   color: #ffffff;
+  border-radius: 8px;
 }
 .submit-form input:hover {
   cursor: pointer;

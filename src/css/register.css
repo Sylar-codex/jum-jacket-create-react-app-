@@ -23,6 +23,9 @@
   border: 1px solid;
   border-radius: 5px;
   font-size: 16px;
+  border-radius: 8px;
+  outline: none;
+  border: solid 2px var(--gray);
 }
 
 .register-submit {

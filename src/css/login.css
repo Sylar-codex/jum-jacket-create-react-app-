@@ -24,6 +24,9 @@
   border: 1px solid;
   border-radius: 5px;
   font-size: 16px;
+  border-radius: 8px;
+  outline: none;
+  border: solid 2px var(--gray);
 }
 
 .login-submit {
@@ -77,5 +80,9 @@
   .login-form-div {
     margin: 8rem 0rem 5rem;
     width: 100%;
+  }
+  .reg-red {
+    flex-direction: column;
+    margin: 0.5rem 1rem;
   }
 }
