@@ -1,4 +1,4 @@
-const increment = (updateCart, id, carts, updateToCart) => {
+const increment = (updateCart, id, carts, updateToCart, isAuthenticated) => {
   let counter = 1;
   let cartObj = {};
   carts.carts.forEach((cart) => {
@@ -10,11 +10,14 @@ const increment = (updateCart, id, carts, updateToCart) => {
   });
   const use = { count: counter };
 
-  updateToCart(cartObj);
-  updateCart(id, use);
+  if (isAuthenticated) {
+    updateCart(id, use);
+  } else {
+    updateToCart(cartObj);
+  }
 };
 
-const decrement = (updateCart, id, carts, updateToCart) => {
+const decrement = (updateCart, id, carts, updateToCart, isAuthenticated) => {
   let counter = 1;
   let cartObj = {};
   carts.carts.forEach((cart) => {
@@ -25,8 +28,11 @@ const decrement = (updateCart, id, carts, updateToCart) => {
     }
   });
   const use = { count: counter };
-  updateToCart(cartObj);
-  updateCart(id, use);
+  if (isAuthenticated) {
+    updateCart(id, use);
+  } else {
+    updateToCart(cartObj);
+  }
 };
 
 const incrementCount = (setState, state, count) => {

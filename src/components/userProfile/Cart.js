@@ -63,7 +63,13 @@ function Cart({
                   <div className="qty-div">
                     <p
                       onClick={() => {
-                        decrement(updateCart, cart.id, carts, updateToCart);
+                        decrement(
+                          updateCart,
+                          cart.id,
+                          carts,
+                          updateToCart,
+                          isAuthenticated
+                        );
                       }}
                     >
                       -
@@ -71,7 +77,13 @@ function Cart({
                     <p>{cart.count}</p>
                     <p
                       onClick={() => {
-                        increment(updateCart, cart.id, carts, updateToCart);
+                        increment(
+                          updateCart,
+                          cart.id,
+                          carts,
+                          updateToCart,
+                          isAuthenticated
+                        );
                       }}
                     >
                       +
