@@ -35,7 +35,7 @@ function ProductPage() {
         setProductInfo({
           product_name: product.product_name,
           image: product.image,
-          price: product.price,
+          price: product.price_naira,
           count: product.count,
           category: product.category,
           description: product.description,

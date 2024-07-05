@@ -56,7 +56,7 @@ function Cart({
                   </div>
                   <div className="cart-name-price">
                     <p>{cart.product_name}</p>
-                    <p>{"₦ " + cart.price.toLocaleString()}</p>
+                    <p>{"₦ " + cart.price_naira.toLocaleString()}</p>
                   </div>
                 </div>
                 <div className="cart-prod-total-div">
@@ -90,7 +90,9 @@ function Cart({
                     </p>
                   </div>
                   <div className="cart-qty-tot">
-                    <p>{"₦ " + (cart.price * cart.count).toLocaleString()}</p>
+                    <p>
+                      {"₦ " + (cart.price_naira * cart.count).toLocaleString()}
+                    </p>
                   </div>
                   <div className="remove-cart">
                     <button

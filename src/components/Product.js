@@ -85,7 +85,7 @@ function Product() {
               <div className="prod-name">{product.product_name}</div>
               <div className="line"></div>
               <div className="prod-price">
-                {"₦ " + product.price.toLocaleString()}
+                {"₦ " + product.price_naira.toLocaleString()}
               </div>
               <button
                 onClick={() => {
@@ -186,7 +186,7 @@ function Product() {
                   <div>
                     <div className="cart-mod-name">{cart.product_name}</div>
                     <div className="cart-mod-price">
-                      {"₦ " + cart.price.toLocaleString()}
+                      {"₦ " + cart.price_naira.toLocaleString()}
                     </div>
                     <div className="cart-mod-qty">
                       <p

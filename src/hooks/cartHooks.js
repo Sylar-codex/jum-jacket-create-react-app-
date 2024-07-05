@@ -98,7 +98,7 @@ function useCartState() {
   // get total amount
   const getTotal = (carts) => {
     const res = carts.reduce((prev, cart) => {
-      return prev + cart.price * cart.count;
+      return prev + cart.price_naira * cart.count;
     }, 0);
     setTotal(res);
   };

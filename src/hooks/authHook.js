@@ -79,6 +79,7 @@ const useAuthState = () => {
       password,
       email,
     });
+    dispatchAuth({ type: FORM_SUBMISSION });
     await axios
       .post(`${url}/api/auth/register`, body, config)
       .then((res) => {
