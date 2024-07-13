@@ -35,7 +35,8 @@ function ProductPage() {
         setProductInfo({
           product_name: product.product_name,
           image: product.image,
-          price: product.price_naira,
+          price_naira: product.price_naira,
+          price_dollar: product.price_dollar,
           count: product.count,
           category: product.category,
           description: product.description,
@@ -52,7 +53,7 @@ function ProductPage() {
       <div className="prod-info-name-desc">
         <h3>{productInfo.product_name}</h3>
         <p className="prod-info-price">
-          {"Price:  ₦ " + productInfo.price.toLocaleString()}
+          {"Price:  ₦ " + productInfo.price_naira.toLocaleString()}
         </p>
         <div className="prod-page-qty">
           <h3>Quantity</h3>

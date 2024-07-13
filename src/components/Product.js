@@ -124,7 +124,7 @@ function Product() {
               <div className="prod-info-name-desc">
                 <h3>{info.product_name}</h3>
                 <p className="prod-info-price">
-                  {"Price:  ₦ " + info.price.toLocaleString()}
+                  {"Price:  ₦ " + info.price_naira.toLocaleString()}
                 </p>
                 <div className="prod-info-desc">
                   <p>
