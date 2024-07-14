@@ -45,9 +45,9 @@ function ProductPage() {
     });
   }, [productName]);
 
-  useEffect(() => {
-    console.log(productInfo.price_naira);
-  }, [productInfo]);
+  // useEffect(() => {
+  //   console.log(productInfo.price_naira);
+  // }, [productInfo]);
 
   return (
     <div>
