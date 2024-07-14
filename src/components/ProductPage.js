@@ -17,7 +17,7 @@ function ProductPage() {
     product_name: "",
     image: "",
     category: "",
-    price: 0,
+    price_naira: 0,
     count: 1,
     description: "",
   });
@@ -45,53 +45,77 @@ function ProductPage() {
     });
   }, [productName]);
 
+  useEffect(() => {
+    console.log(productInfo.price_naira);
+  }, [productInfo]);
+
   return (
-    <div className="product-page">
-      <div className="product-page-img">
-        <LazyLoadImage src={productInfo.image} alt="product" />
-      </div>
-      <div className="prod-info-name-desc">
-        <h3>{productInfo.product_name}</h3>
-        <p className="prod-info-price">
-          {"Price:  ₦ " + productInfo.price_naira.toLocaleString()}
-        </p>
-        <div className="prod-page-qty">
-          <h3>Quantity</h3>
-          <div className="prod-page-qty-counter">
-            <p
+    <div>
+      {products.isLoading ? (
+        <div className="loading"></div>
+      ) : (
+        <div className="product-page">
+          <div className="product-page-img">
+            <LazyLoadImage src={productInfo.image} alt="product" />
+          </div>
+          <div className="prod-info-name-desc">
+            <h3>{productInfo.product_name}</h3>
+            <p className="prod-info-price">
+              {"Price:  ₦ " + productInfo.price_naira.toLocaleString()}
+            </p>
+            <div className="prod-page-qty">
+              <h3>Quantity</h3>
+              <div className="prod-page-qty-counter">
+                <p
+                  onClick={() => {
+                    decrementCount(
+                      setProductInfo,
+                      productInfo,
+                      productInfo.count
+                    );
+                  }}
+                >
+                  -
+                </p>
+                <p>{productInfo.count}</p>
+                <p
+                  onClick={() => {
+                    incrementCount(
+                      setProductInfo,
+                      productInfo,
+                      productInfo.count
+                    );
+                  }}
+                >
+                  +
+                </p>
+              </div>
+            </div>
+            <div className="prod-info-desc">
+              <h3>About this item</h3>
+              <div>
+                {productInfo.description.split("_").map((desc) => (
+                  <p>{desc}</p>
+                ))}
+              </div>
+            </div>
+            <button
+              className="prod-page-add-cart-btn"
               onClick={() => {
-                decrementCount(setProductInfo, productInfo, productInfo.count);
+                checkCart(
+                  addCart,
+                  productInfo,
+                  carts,
+                  isAuthenticated,
+                  addToCart
+                );
               }}
             >
-              -
-            </p>
-            <p>{productInfo.count}</p>
-            <p
-              onClick={() => {
-                incrementCount(setProductInfo, productInfo, productInfo.count);
-              }}
-            >
-              +
-            </p>
+              add to cart
+            </button>
           </div>
         </div>
-        <div className="prod-info-desc">
-          <h3>About this item</h3>
-          <p>
-            {productInfo.description.split("_").map((desc) => (
-              <p>{desc}</p>
-            ))}
-          </p>
-        </div>
-        <button
-          className="prod-page-add-cart-btn"
-          onClick={() => {
-            checkCart(addCart, productInfo, carts, isAuthenticated, addToCart);
-          }}
-        >
-          add to cart
-        </button>
-      </div>
+      )}
     </div>
   );
 }
