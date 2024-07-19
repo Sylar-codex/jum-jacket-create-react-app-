@@ -5,6 +5,7 @@ import { OrderedContext } from "../context/OrderedContext";
 import { AuthContext } from "../context/AuthContext";
 import { tokenConfig } from "../actions/authFunc";
 import { createMessage } from "../actions/messages";
+import { RegionContext } from "../context/RegionContext";
 import { MessageContext } from "../context/MessageContext";
 import {
   GET_CARTS,
@@ -19,6 +20,7 @@ function useCartState() {
   const { dispatchMessage } = useContext(MessageContext);
   const { carts, dispatchCarts } = useContext(CartContext);
   const { ordered, dispatchOrdered } = useContext(OrderedContext);
+  const { region } = useContext(RegionContext);
 
   const { auth } = useContext(AuthContext);
 
@@ -97,9 +99,15 @@ function useCartState() {
 
   // get total amount
   const getTotal = (carts) => {
-    const res = carts.reduce((prev, cart) => {
+    const resInNGN = carts.reduce((prev, cart) => {
       return prev + cart.price_naira * cart.count;
     }, 0);
+
+    const resInUSD = carts.reduce((prev, cart) => {
+      return prev + cart.price_dollar * cart.count;
+    }, 0);
+    const res = region === "NG" ? resInNGN : resInUSD;
+
     setTotal(res);
   };
 

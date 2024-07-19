@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useProductState from "../hooks/productHooks";
 import useCartState from "../hooks/cartHooks";
@@ -6,12 +6,15 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { decrementCount, incrementCount } from "../utils/utils";
 import { checkCart } from "../utils/addToCart";
 import useAuthState from "../hooks/authHook";
+import { RegionContext } from "../context/RegionContext";
 
 function ProductPage() {
   const { products, getProducts } = useProductState();
   const { addCart, getCarts, carts, addToCart } = useCartState();
   const { auth } = useAuthState();
   const { isAuthenticated } = auth;
+
+  const { region } = useContext(RegionContext);
 
   const [productInfo, setProductInfo] = useState({
     product_name: "",
@@ -61,7 +64,10 @@ function ProductPage() {
           <div className="prod-info-name-desc">
             <h3>{productInfo.product_name}</h3>
             <p className="prod-info-price">
-              {"Price:  ₦ " + productInfo.price_naira.toLocaleString()}
+              Price:{" "}
+              {region === "NG"
+                ? `₦ ${productInfo.price_naira.toLocaleString()}`
+                : `$ ${productInfo.price_dollar.toLocaleString()}`}
             </p>
             <div className="prod-page-qty">
               <h3>Quantity</h3>

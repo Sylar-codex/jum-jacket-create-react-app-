@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { WalletContext } from "../context/WalletContext";
 import { AuthContext } from "../context/AuthContext";
 import { tokenConfig } from "../actions/authFunc";

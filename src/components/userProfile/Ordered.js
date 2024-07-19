@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import useCartState from "../../hooks/cartHooks";
 import "../../css/ordered.css";
+import { RegionContext } from "../../context/RegionContext";
 
 function Ordered() {
   const { ordered, getCarts } = useCartState();
+
+  const { region } = useContext(RegionContext);
 
   useEffect(() => {
     getCarts();
@@ -26,9 +29,13 @@ function Ordered() {
           {ordered.ordered.map((ord) => (
             <tr key={ord.id}>
               <td>{ord.product_name}</td>
-              <td>{ord.price}</td>
+              <td>{region === "NG" ? ord.price_naira : ord.price_dollar}</td>
               <td>{ord.count}</td>
-              <td>{ord.price * ord.count}</td>
+              <td>
+                {region === "NG"
+                  ? ord.price_naira * ord.count
+                  : ord.price_dollar * ord.count}
+              </td>
               <td>{ord.paid ? "paid" : "pending"}</td>
             </tr>
           ))}

@@ -15,11 +15,14 @@ import PrivateRoutes from "./common/PrivateRoutes";
 import ProductPage from "./ProductPage";
 import EmailPasswordReset from "./accounts/EmailPasswordReset";
 import ResetPassword from "./accounts/ResetPassword";
+import useRegionState from "../hooks/regionHook";
 
 function App() {
   const { auth, loadUser } = useAuthState();
+  const { getRegion } = useRegionState();
   useEffect(() => {
     loadUser();
+    getRegion();
   }, [auth.isAuthenticated]);
   return (
     <Fragment>

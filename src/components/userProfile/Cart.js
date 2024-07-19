@@ -15,6 +15,7 @@ function Cart({
   deleteFromCart,
   isAuthenticated,
   getGuestCart,
+  region,
 }) {
   const navigate = useNavigate();
 
@@ -25,7 +26,7 @@ function Cart({
     }
   }, []);
 
-  const delivery = 1500;
+  const delivery = region === "NG" ? 1500 : 20;
 
   useEffect(() => {
     getTotal(carts.carts);
@@ -56,7 +57,11 @@ function Cart({
                   </div>
                   <div className="cart-name-price">
                     <p>{cart.product_name}</p>
-                    <p>{"₦ " + cart.price_naira.toLocaleString()}</p>
+                    <p>
+                      {region === "NG"
+                        ? `₦ ${cart.price_naira.toLocaleString()}`
+                        : `$ ${cart.price_dollar.toLocaleString()}`}
+                    </p>
                   </div>
                 </div>
                 <div className="cart-prod-total-div">
@@ -91,7 +96,13 @@ function Cart({
                   </div>
                   <div className="cart-qty-tot">
                     <p>
-                      {"₦ " + (cart.price_naira * cart.count).toLocaleString()}
+                      {region === "NG"
+                        ? `₦ ${(
+                            cart.price_naira * cart.count
+                          ).toLocaleString()}`
+                        : `$ ${(
+                            cart.price_dollar * cart.count
+                          ).toLocaleString()}`}
                     </p>
                   </div>
                   <div className="remove-cart">
@@ -117,17 +128,25 @@ function Cart({
             <div className="sub-total-div">
               <div className="sub-total">
                 <p>subtotal</p>
-                <p>{"₦ " + total.toLocaleString()}</p>
+                <p>
+                  {`${region === "NG" ? "₦ " : "$ "}` + total.toLocaleString()}
+                </p>
               </div>
               <div className="delivery">
                 <p>delivery</p>
-                <p>{"₦ " + delivery.toLocaleString()}</p>
+                <p>
+                  {`${region === "NG" ? "₦ " : "$ "}` +
+                    delivery.toLocaleString()}
+                </p>
               </div>
             </div>
             <div className="final-total">
               <div className="total">
                 <p>Total</p>
-                <p>{"₦ " + (total + delivery).toLocaleString()}</p>
+                <p>
+                  {`${region === "NG" ? "₦ " : "$ "}` +
+                    (total + delivery).toLocaleString()}
+                </p>
               </div>
               <button
                 onClick={() => {
@@ -145,17 +164,3 @@ function Cart({
 }
 
 export default Cart;
-
-// {
-//  <div className="cart-page-empty">
-// {carts.carts.length < 1 ? (
-//   <div>
-//     <p>
-//       sorry your cart is empty :({" "}
-//       <span>
-//         <Link to="/">Go back to shop</Link>
-//       </span>
-//     </p>
-//   </div>
-// }
-// // </div>

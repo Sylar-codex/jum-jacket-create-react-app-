@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import useCartState from "../../hooks/cartHooks";
 import { useNavigate } from "react-router-dom";
 import "../../css/billingForm.css";
 import useAuthState from "../../hooks/authHook";
 import useWalletState from "../../hooks/walletHook";
+import { RegionContext } from "../../context/RegionContext";
 
 function BillingForm() {
   const { total, carts, getTotal, getCarts, sendBillForm } = useCartState();
   const { wallet, make_deposit } = useWalletState();
   const { auth } = useAuthState();
   const { user, isAuthenticated } = auth;
+
+  const { region } = useContext(RegionContext);
 
   const navigate = useNavigate();
 
@@ -23,7 +26,7 @@ function BillingForm() {
     phone: "",
   });
 
-  const delivery = 1500;
+  const delivery = region === "NG" ? 1500 : 20;
 
   useEffect(() => {
     if (user && isAuthenticated) {
@@ -167,17 +170,22 @@ function BillingForm() {
         <div className="sub-total-div">
           <div className="sub-total">
             <p>subtotal</p>
-            <p>{"₦ " + total.toLocaleString()}</p>
+            <p>{`${region === "NG" ? "₦ " : "$ "}` + total.toLocaleString()}</p>
           </div>
           <div className="delivery">
             <p>delivery</p>
-            <p>{"₦ " + delivery.toLocaleString()}</p>
+            <p>
+              {`${region === "NG" ? "₦ " : "$ "}` + delivery.toLocaleString()}
+            </p>
           </div>
         </div>
         <div className="final-total">
           <div className="total">
             <p>Total</p>
-            <p>{"₦ " + (total + delivery).toLocaleString()}</p>
+            <p>
+              {`${region === "NG" ? "₦ " : "$ "}` +
+                (total + delivery).toLocaleString()}
+            </p>
           </div>
         </div>
       </div>

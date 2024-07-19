@@ -13,27 +13,30 @@ import { MessageProvider } from "./context/MessageContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ErrorProvider } from "./context/ErrorContext";
+import { RegionProvider } from "./context/RegionContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <ProductProvider>
-    <CartProvider>
-      <OrderedProvider>
-        <AuthProvider>
-          <MessageProvider>
-            <ErrorProvider>
-              <WalletProvider>
-                <HashRouter>
-                  <App />
-                  <ToastContainer position="top-center" />
-                </HashRouter>
-              </WalletProvider>
-            </ErrorProvider>
-          </MessageProvider>
-        </AuthProvider>
-      </OrderedProvider>
-    </CartProvider>
-  </ProductProvider>
+  <RegionProvider>
+    <ProductProvider>
+      <CartProvider>
+        <OrderedProvider>
+          <AuthProvider>
+            <MessageProvider>
+              <ErrorProvider>
+                <WalletProvider>
+                  <HashRouter>
+                    <App />
+                    <ToastContainer position="top-center" />
+                  </HashRouter>
+                </WalletProvider>
+              </ErrorProvider>
+            </MessageProvider>
+          </AuthProvider>
+        </OrderedProvider>
+      </CartProvider>
+    </ProductProvider>
+  </RegionProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

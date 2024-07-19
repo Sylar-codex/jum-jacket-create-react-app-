@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useProductState from "../hooks/productHooks";
 import useCartState from "../hooks/cartHooks";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../css/product.css";
 import { checkCart } from "../utils/addToCart";
 import useAuthState from "../hooks/authHook";
+import { RegionContext } from "../context/RegionContext";
 
 function Product() {
   const navigate = useNavigate();
@@ -31,6 +32,10 @@ function Product() {
   const [modalInfo, setModalInfo] = useState(false);
   const [modalCart, setModalCart] = useState(false);
   const { products, getProducts } = useProductState();
+
+  const { region } = useContext(RegionContext);
+
+  // console.log(region);
 
   useEffect(() => {
     getCarts();
@@ -85,7 +90,9 @@ function Product() {
               <div className="prod-name">{product.product_name}</div>
               <div className="line"></div>
               <div className="prod-price">
-                {"₦ " + product.price_naira.toLocaleString()}
+                {region === "NG"
+                  ? `₦ ${product.price_naira.toLocaleString()}`
+                  : `$ ${product.price_dollar.toLocaleString()}`}
               </div>
               <button
                 onClick={() => {
@@ -124,7 +131,10 @@ function Product() {
               <div className="prod-info-name-desc">
                 <h3>{info.product_name}</h3>
                 <p className="prod-info-price">
-                  {"Price:  ₦ " + info.price_naira.toLocaleString()}
+                  Price:{" "}
+                  {region === "NG"
+                    ? `₦ ${info.price_naira.toLocaleString()}`
+                    : `$ ${info.price_dollar.toLocaleString()}`}
                 </p>
                 <div className="prod-info-desc">
                   <p>
@@ -186,7 +196,9 @@ function Product() {
                   <div>
                     <div className="cart-mod-name">{cart.product_name}</div>
                     <div className="cart-mod-price">
-                      {"₦ " + cart.price_naira.toLocaleString()}
+                      {region === "NG"
+                        ? `₦ ${cart.price_naira.toLocaleString()}`
+                        : `$ ${cart.price_dollar.toLocaleString()}`}
                     </div>
                     <div className="cart-mod-qty">
                       <p
@@ -235,7 +247,9 @@ function Product() {
             <div className="cart-mod-sub-div">
               <div className="cart-mod-sub">
                 <h3>Subtotal</h3>
-                <h3>{"₦ " + total.toLocaleString()}</h3>
+                <h3>
+                  {`${region === "NG" ? "₦ " : "$ "}` + total.toLocaleString()}
+                </h3>
               </div>
               <div className="viewcart-mod">
                 <button
