@@ -16,6 +16,7 @@ import ProductPage from "./ProductPage";
 import EmailPasswordReset from "./accounts/EmailPasswordReset";
 import ResetPassword from "./accounts/ResetPassword";
 import useRegionState from "../hooks/regionHook";
+import Checkout from "./stripe/Checkout";
 
 function App() {
   const { auth, loadUser } = useAuthState();
@@ -44,6 +45,7 @@ function App() {
           path="/reset-password/:uidb64/:token"
           element={<ResetPassword />}
         />
+        <Route path="/checkout/:clientSecret" element={<Checkout />} />
       </Routes>
       <Footer />
     </Fragment>

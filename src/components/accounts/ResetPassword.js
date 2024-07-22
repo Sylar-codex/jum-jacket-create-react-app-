@@ -15,9 +15,7 @@ function ResetPassword() {
 
   const { uidb64, token } = useParams();
 
-  useEffect(() => {
-    console.log(uidb64, token);
-  }, [uidb64, token]);
+  useEffect(() => {}, [uidb64, token]);
   // https://localhost:3000/#/reset-passowrd/MTA/c0ctb4-7c72d446fa5f54b9daa4671ef1f0b82f
 
   const handleSubmit = (e) => {

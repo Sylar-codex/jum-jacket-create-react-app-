@@ -11,6 +11,8 @@ function Alert() {
     if (message.addToCart) toast.success(message.addToCart);
     if (message.deleteCart) toast.success(message.deleteCart);
     if (message.message) toast.success(message.message);
+    if (message.paymentSucceeded) toast.success(message.paymentSucceeded);
+    if (message.paymentFailed) toast.error(message.paymentFailed);
     if (message.passwordNotMatch) toast.error(message.passwordNotMatch);
   }, [
     message.addToCart,

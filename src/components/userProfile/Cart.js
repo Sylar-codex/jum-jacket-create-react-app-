@@ -16,6 +16,7 @@ function Cart({
   isAuthenticated,
   getGuestCart,
   region,
+  delivery,
 }) {
   const navigate = useNavigate();
 
@@ -25,8 +26,6 @@ function Cart({
       getGuestCart();
     }
   }, []);
-
-  const delivery = region === "NG" ? 1500 : 20;
 
   useEffect(() => {
     getTotal(carts.carts);

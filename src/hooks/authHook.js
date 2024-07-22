@@ -36,7 +36,6 @@ const useAuthState = () => {
       })
       .catch((err) => {
         dispatchAuth({ type: AUTH_ERROR });
-        console.log("error-auth", err);
       });
   };
 
@@ -107,7 +106,6 @@ const useAuthState = () => {
     await axios
       .post(`${url}/api/request-reset-email`, { email })
       .then((res) => {
-        console.log(res.data.message);
         dispatchMessage(createMessage({ message: res.data.message }));
         dispatchAuth({ type: SUBMISSION_SUCCESS });
       })
@@ -120,12 +118,10 @@ const useAuthState = () => {
   // reset password
 
   const resetPassword = async (body) => {
-    console.log(body);
     dispatchAuth({ type: FORM_SUBMISSION });
     await axios
       .patch(`${url}/api/password-reset-complete`, body)
       .then((res) => {
-        console.log(res.data.message);
         dispatchMessage(createMessage({ message: res.data.message }));
         dispatchAuth({ type: SUBMISSION_SUCCESS });
       })

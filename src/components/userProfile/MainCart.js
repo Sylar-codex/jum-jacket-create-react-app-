@@ -15,6 +15,7 @@ function Profile() {
     updateCart,
     getTotal,
     total,
+    delivery,
     updateToCart,
     deleteFromCart,
     getGuestCart,
@@ -33,6 +34,7 @@ function Profile() {
         isAuthenticated={isAuthenticated}
         getGuestCart={getGuestCart}
         region={region}
+        delivery={delivery}
       />
     </Fragment>
   );

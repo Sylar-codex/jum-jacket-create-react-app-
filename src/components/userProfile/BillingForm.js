@@ -7,8 +7,9 @@ import useWalletState from "../../hooks/walletHook";
 import { RegionContext } from "../../context/RegionContext";
 
 function BillingForm() {
-  const { total, carts, getTotal, getCarts, sendBillForm } = useCartState();
-  const { wallet, make_deposit } = useWalletState();
+  const { total, carts, getTotal, getCarts, sendBillForm, delivery } =
+    useCartState();
+  const { wallet, make_deposit, makePaymentStripe } = useWalletState();
   const { auth } = useAuthState();
   const { user, isAuthenticated } = auth;
 
@@ -25,8 +26,6 @@ function BillingForm() {
     country: "",
     phone: "",
   });
-
-  const delivery = region === "NG" ? 1500 : 20;
 
   useEffect(() => {
     if (user && isAuthenticated) {
@@ -63,7 +62,13 @@ function BillingForm() {
     const use = { full_name, email, home_address, city, state, country, phone };
     sendBillForm(use);
     const depo = { amount: (total + delivery) * 100, email: user.email };
-    make_deposit(depo);
+
+    if (region === "NG") {
+      make_deposit(depo);
+    } else {
+      const { amount } = depo;
+      makePaymentStripe({ amount });
+    }
     setBillForm({
       full_name: "",
       email: "",
