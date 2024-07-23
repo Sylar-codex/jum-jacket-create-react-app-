@@ -35,8 +35,6 @@ function Product() {
 
   const { region } = useContext(RegionContext);
 
-  // console.log(region);
-
   useEffect(() => {
     getCarts();
     getProducts();

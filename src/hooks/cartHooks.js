@@ -118,9 +118,10 @@ function useCartState() {
       },
     };
     const body = JSON.stringify(form);
-    console.log(form);
     await axios.post(`${url}/api/billingform/`, body, config).then((res) => {});
   };
+
+  const delivery = region === "NG" ? 1500 : 20;
 
   return {
     carts,
@@ -136,6 +137,7 @@ function useCartState() {
     updateToCart,
     deleteFromCart,
     getGuestCart,
+    delivery,
   };
 }
 export default useCartState;

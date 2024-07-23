@@ -1,0 +1,66 @@
+.stripe-form {
+  margin: auto;
+  margin-top: 10rem;
+  margin-bottom: 5rem;
+  width: 30%;
+  border: 1px solid;
+  border-radius: 5px;
+  box-shadow: 5px 8px var(--gray);
+  padding: 10px;
+}
+.card-elements {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.card {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.card img {
+  display: flex;
+  align-self: flex-end;
+}
+.card-number {
+  width: 70%;
+}
+
+.card-number-input {
+  border: 2px solid #a9a9a9;
+  border-radius: 5px;
+  padding: 0.7rem;
+  margin-top: 0.43rem;
+}
+
+.card-expiry-input {
+  margin-top: 0.43rem;
+}
+.card-cvc-input {
+  margin-top: 0.43rem;
+}
+.stripe-form button {
+  margin: 1rem 0 0;
+  text-align: center;
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  width: 10rem;
+  height: 2.5rem;
+  background: #0e6efd;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stripe-form button:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+@media only screen and (max-width: 430px) {
+  .stripe-form {
+    width: 80%;
+  }
+}
