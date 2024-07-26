@@ -23,7 +23,7 @@ function App() {
   const { getRegion } = useRegionState();
   useEffect(() => {
     loadUser();
-    // getRegion();
+    getRegion();
   }, [auth.isAuthenticated]);
   return (
     <Fragment>
