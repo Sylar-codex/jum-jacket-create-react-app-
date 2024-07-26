@@ -5,7 +5,7 @@ const RegionContext = createContext(null);
 const { Provider } = RegionContext;
 
 const RegionProvider = ({ children }) => {
-  const [region, setRegion] = useState("US");
+  const [region, setRegion] = useState("NG");
   return <Provider value={{ region, setRegion }}>{children}</Provider>;
 };
 
