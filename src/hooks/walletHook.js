@@ -26,7 +26,8 @@ const useWalletState = () => {
     await axios
       .post(`${url}/api/deposit_stripe`, amount, tokenConfig(auth))
       .then((res) => {
-        navigate(`/checkout/${res.data.client_secret}`);
+        const encodedSecret = btoa(res.data.client_secret);
+        navigate(`/checkout/${encodedSecret}`);
       })
       .catch((err) => {
         console.log(err);
