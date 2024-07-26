@@ -43,6 +43,7 @@ function CheckoutForm({ clientSecret }) {
         payment_method: {
           card: cardElement,
         },
+        return_url: process.env.REACT_APP_HOME_URL,
       }
     );
 

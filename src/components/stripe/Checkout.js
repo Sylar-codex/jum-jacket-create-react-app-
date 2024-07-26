@@ -9,11 +9,13 @@ function Checkout() {
 
   const { clientSecret } = useParams();
 
+  const decodedSecret = atob(clientSecret);
+
   const stripePromise = loadStripe(key);
 
   return (
     <Elements stripe={stripePromise}>
-      <CheckoutForm clientSecret={clientSecret} />
+      <CheckoutForm clientSecret={decodedSecret} />
     </Elements>
   );
 }
